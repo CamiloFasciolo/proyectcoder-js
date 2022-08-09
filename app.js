@@ -10,7 +10,7 @@ let carrito = {}
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchData()
-    if (localStorage.getItem('carrito')){
+    if (localStorage.getItem('carrito')) {
         carrito = JSON.parse(localStorage.getItem('carrito'))
         pintarCarrito()
     }
@@ -142,19 +142,70 @@ const btnAccion = e => {
         //carrito[e.target.dataset.id]  
         const producto = carrito[e.target.dataset.id]
         producto.cantidad++
-        carrito[e.target.dataset.id] = {...producto}
+        carrito[e.target.dataset.id] = {
+            ...producto
+        }
         pintarCarrito()
     }
 
     if (e.target.classList.contains('btn-danger')) {
         const producto = carrito[e.target.dataset.id]
         producto.cantidad--
-        if (producto.cantidad === 0){
-        delete carrito[e.target.dataset.id]
+        if (producto.cantidad === 0) {
+            delete carrito[e.target.dataset.id]
+        }
+        pintarCarrito()
     }
-    pintarCarrito()
-} 
 
-e.stopPropagation()
+    e.stopPropagation()
+
+}
+
+
+function comprarClick() {
+
+    Toastify({
+
+        text: "Agregado al carrito!",
+        duration: 3000
+        }).showToast();
+        
+        
+}
+
+
+function vaciarClick() {
+
+    Toastify({
+
+        text: "Se vacio el carrito",
+        duration: 3000
+        }).showToast();
+        
+
+}
+
+
+function agregoClick(){
+
+    Toastify({
+
+        text: "Agregaste un producto!",
+        duration: 3000
+        }).showToast();
+        
+
+}
+
+
+function eliminasteClick() {
+
+    Toastify({
+
+        text: "Eliminaste un producto",
+        duration: 3000
+        }).showToast();
+        
+
 
 }
